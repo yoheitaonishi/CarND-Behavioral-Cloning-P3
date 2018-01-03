@@ -1,3 +1,6 @@
+from keras.models import Sequential
+from keras.layers import Flatten, Dense
+
 import csv
 import cv2
 import numpy as np
@@ -12,7 +15,8 @@ with open('./data/driving_log.csv') as csvfile:
 
 images = []
 measurements = []
-del lines[0] # delete csv header
+del lines[0]
+
 for line in lines:
     source_path = line[0]
     filename = source_path.split('/')[-1]
@@ -24,9 +28,6 @@ for line in lines:
 
 X_train = np.array(images)
 y_train = np.array(measurements)
-
-from keras.models import Sequential
-from keras.layers import Flatten, Dense
 
 model = Sequential()
 model.add(Flatten(input_shape=(160, 320, 3)))
