@@ -1,6 +1,8 @@
 from moviepy.editor import ImageSequenceClip
 import argparse
 import os
+from IPython import embed
+from IPython.terminal.embed import InteractiveShellEmbed
 
 IMAGE_EXT = ['jpeg', 'gif', 'png', 'jpg']
 
