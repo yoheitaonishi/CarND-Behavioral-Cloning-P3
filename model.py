@@ -53,25 +53,31 @@ X_train = np.array(augmented_images)
 y_train = np.array(augmented_measurements)
 
 model = Sequential()
+
 """
 Normalization Example
 pixel_normalized = pixel / 255
 pixel_mean_centered = pixel_normalized - 0.5
 """
+
 model.add(Lambda(lambda x: x / 255.0 - 0.5, input_shape=(160, 320, 3)))
 model.add(Cropping2D(cropping=((70, 25), (0, 0))))
+
 """
 Convolution2D explain
 """
+
 model.add(Convolution2D(24, 5, 5, subsample=(2, 2), activation='relu'))
 model.add(Convolution2D(36, 5, 5, subsample=(2, 2), activation='relu'))
 model.add(Convolution2D(48, 5, 5, subsample=(2, 2), activation='relu'))
 model.add(Convolution2D(64, 3, 3, activation='relu'))
 model.add(Convolution2D(64, 3, 3, activation='relu'))
 model.add(Flatten())
+
 """
 Why 120
 """
+
 model.add(Dense(100))
 model.add(Dense(50))
 model.add(Dense(10))
